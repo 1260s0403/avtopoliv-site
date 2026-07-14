@@ -90,14 +90,14 @@
         }
 
         .logo-img {
-            height: 150px;
+            height: 130px;
             width: auto;
             object-fit: contain;
             transition: height 0.3s ease;
         }
 
         header.compact .logo-img {
-            height: 55px;
+            height: 48px;
         }
 
         /* ----- Телефон и текст "Звоните нам" ----- */
@@ -233,8 +233,6 @@
             align-items: center;
             cursor: pointer;
             position: relative;
-            border-radius: 14px;
-            overflow: hidden;
         }
 
         .slide-image-zone {
@@ -631,6 +629,27 @@
             margin-top: 10px;
         }
 
+        /* ----- Скругление для слайдов ----- */
+        /* 1 и 3 слайды (обычный порядок) */
+        .fullscreen-slide:nth-child(2) .slide-image-zone,
+        .fullscreen-slide:nth-child(4) .slide-image-zone {
+            border-radius: 14px 0 0 14px;
+        }
+
+        .fullscreen-slide:nth-child(2) .slide-text-zone,
+        .fullscreen-slide:nth-child(4) .slide-text-zone {
+            border-radius: 0 14px 14px 0;
+        }
+
+        /* 2 слайд (обратный порядок) */
+        .fullscreen-slide:nth-child(3) .slide-image-zone {
+            border-radius: 0 14px 14px 0;
+        }
+
+        .fullscreen-slide:nth-child(3) .slide-text-zone {
+            border-radius: 14px 0 0 14px;
+        }
+
         /* ----- Адаптивность ----- */
         @media (max-width: 1024px) {
             .split-layout {
@@ -789,6 +808,19 @@
                 right: 10px;
             }
 
+            /* Мобильная версия скругления - убираем */
+            .fullscreen-slide:nth-child(2) .slide-image-zone,
+            .fullscreen-slide:nth-child(4) .slide-image-zone,
+            .fullscreen-slide:nth-child(3) .slide-image-zone {
+                border-radius: 0;
+            }
+
+            .fullscreen-slide:nth-child(2) .slide-text-zone,
+            .fullscreen-slide:nth-child(4) .slide-text-zone,
+            .fullscreen-slide:nth-child(3) .slide-text-zone {
+                border-radius: 0;
+            }
+
             .form-container-slide h2 {
                 font-size: 28px;
             }
@@ -873,39 +905,22 @@
             .form-container-slide .form-subtitle {
                 font-size: 14px;
             }
-            /* Скругление для обычного порядка (слайды 1 и 3) */
-.fullscreen-slide:not(:nth-child(even)) .slide-image-zone {
-    border-radius: 14px 0 0 14px;
-}
-
-.fullscreen-slide:not(:nth-child(even)) .slide-text-zone {
-    border-radius: 0 14px 14px 0;
-}
-
-/* Скругление для обратного порядка (слайд 2) */
-.fullscreen-slide:nth-child(even) .slide-image-zone {
-    border-radius: 0 14px 14px 0;
-}
-
-.fullscreen-slide:nth-child(even) .slide-text-zone {
-    border-radius: 14px 0 0 14px;
-}
         }
     </style>
 </head>
 <body>
 
     <header id="header">
-    <div class="container">
-        <a href="#" class="logo-link" aria-label="Лейка - системы автополива">
-            <img src="logo.png" alt="Автополив Лейка Логотип" class="logo-img" width="130" height="130" loading="lazy">
-        </a>
-        <div class="phone-wrapper">
-            <span class="call-text">Звоните нам</span>
-            <a href="tel:+79189080570" class="phone" aria-label="Позвонить +7 (918) 908-05-70">+7 (918) 908-05-70</a>
+        <div class="container">
+            <a href="#" class="logo-link" aria-label="Лейка - системы автополива">
+                <img src="logo.png" alt="Автополив Лейка Логотип" class="logo-img" width="130" height="130" loading="lazy">
+            </a>
+            <div class="phone-wrapper">
+                <span class="call-text">Звоните нам</span>
+                <a href="tel:+79189080570" class="phone" aria-label="Позвонить +7 (918) 908-05-70">+7 (918) 908-05-70</a>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
 
     <!-- Слайд 1: Герой -->
     <section class="fullscreen-slide hero" id="hero">
