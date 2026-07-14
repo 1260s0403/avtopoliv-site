@@ -233,6 +233,8 @@
             align-items: center;
             cursor: pointer;
             position: relative;
+            border-radius: 14px;
+            overflow: hidden;
         }
 
         .slide-image-zone {
@@ -629,34 +631,6 @@
             margin-top: 10px;
         }
 
-        /* ----- Скругление для слайдов ----- */
-        /* Слайд 2 (первый с картинкой, обычный порядок) */
-        .fullscreen-slide:nth-child(2) .slide-image-zone {
-         border-radius: 14px 0 0 14px;
-        }
-
-        .fullscreen-slide:nth-child(2) .slide-text-zone {
-        border-radius: 0 14px 14px 0;
-        }
-
-        /* Слайд 3 (второй с картинкой, обратный порядок) */
-        .fullscreen-slide:nth-child(3) .slide-image-zone {
-        border-radius: 0 14px 14px 0;
-        }
-
-        .fullscreen-slide:nth-child(3) .slide-text-zone {
-        border-radius: 14px 0 0 14px;
-        }
-
-        /* Слайд 4 (третий с картинкой, обычный порядок) */
-        .fullscreen-slide:nth-child(4) .slide-image-zone {
-        border-radius: 14px 0 0 14px;
-        }
-
-        .fullscreen-slide:nth-child(4) .slide-text-zone {
-        border-radius: 0 14px 14px 0;
-        }
-
         /* ----- Адаптивность ----- */
         @media (max-width: 1024px) {
             .split-layout {
@@ -731,6 +705,8 @@
                 flex-direction: column !important;
                 height: auto;
                 min-height: 100vh;
+                border-radius: 14px;
+                overflow: hidden;
             }
 
             .slide-image-zone {
@@ -813,19 +789,6 @@
             }
             .gallery-arrow.next {
                 right: 10px;
-            }
-
-            /* Мобильная версия скругления - убираем */
-            .fullscreen-slide:nth-child(2) .slide-image-zone,
-            .fullscreen-slide:nth-child(4) .slide-image-zone,
-            .fullscreen-slide:nth-child(3) .slide-image-zone {
-                border-radius: 0;
-            }
-
-            .fullscreen-slide:nth-child(2) .slide-text-zone,
-            .fullscreen-slide:nth-child(4) .slide-text-zone,
-            .fullscreen-slide:nth-child(3) .slide-text-zone {
-                border-radius: 0;
             }
 
             .form-container-slide h2 {
