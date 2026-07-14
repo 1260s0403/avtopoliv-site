@@ -873,22 +873,39 @@
             .form-container-slide .form-subtitle {
                 font-size: 14px;
             }
+            /* Скругление для обычного порядка (слайды 1 и 3) */
+.fullscreen-slide:not(:nth-child(even)) .slide-image-zone {
+    border-radius: 14px 0 0 14px;
+}
+
+.fullscreen-slide:not(:nth-child(even)) .slide-text-zone {
+    border-radius: 0 14px 14px 0;
+}
+
+/* Скругление для обратного порядка (слайд 2) */
+.fullscreen-slide:nth-child(even) .slide-image-zone {
+    border-radius: 0 14px 14px 0;
+}
+
+.fullscreen-slide:nth-child(even) .slide-text-zone {
+    border-radius: 14px 0 0 14px;
+}
         }
     </style>
 </head>
 <body>
 
     <header id="header">
-        <div class="container">
-            <a href="#" class="logo-link" aria-label="Лейка - системы автополива">
-                <img src="logo.png" alt="Автополив Лейка Логотип" class="logo-img" width="130" height="130" loading="lazy">
-            </a>
-            <div class="phone-wrapper">
-                <span class="call-text">Звоните нам</span>
-                <a href="tel:+79189080570" class="phone" aria-label="Позвонить +7 (918) 908-05-70">+7 (918) 908-05-70</a>
-            </div>
+    <div class="container">
+        <a href="#" class="logo-link" aria-label="Лейка - системы автополива">
+            <img src="logo.png" alt="Автополив Лейка Логотип" class="logo-img" width="130" height="130" loading="lazy">
+        </a>
+        <div class="phone-wrapper">
+            <span class="call-text">Звоните нам</span>
+            <a href="tel:+79189080570" class="phone" aria-label="Позвонить +7 (918) 908-05-70">+7 (918) 908-05-70</a>
         </div>
-    </header>
+    </div>
+</header>
 
     <!-- Слайд 1: Герой -->
     <section class="fullscreen-slide hero" id="hero">
