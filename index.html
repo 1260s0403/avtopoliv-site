@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Инженерные системы автоматического полива премиум-класса. Проектирование, монтаж и обслуживание систем автополива.">
+    <title>Инженерные системы автоматического полива</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ----- Базовые переменные ----- */
+        :root {
+            --primary: #10b981;
+            --primary-hover: #059669;
+            --bg-dark: #060911;
+            --bg-card: #0d1321;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --text-muted-light: #94a3b8;
+            --border: rgba(255, 255, 255, 0.06);
+            --header-height: 90px;
+            --header-compact-height: 50px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Manrope', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--text-main);
+            background-color: var(--bg-dark);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ----- Header ----- */
+        header {
+            background: rgba(6, 9, 17, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 35px 20px 20px 20px;
+            transition: padding 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        header.compact {
+            padding: 8px 20px;
+            background: rgba(6, 9, 17, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            height: var(--header-height);
+            transition: height 0.3s ease;
+        }
+
+        header.compact .container {
+            height: var(--header-compact-height);
+        }
+
+        .logo-link {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: left 0.3s ease, transform 0.3s ease;
+        }
+
+        header.compact .logo-link {
+            left: 0%;
+            transform: translate(0%, -50%);
+        }
+
+        .logo-img {
+            height: 130px;
+            width: auto;
+            object-fit: contain;
+            transition: height 0.3s ease;
+        }
+
+        header.compact .logo-img {
+            height: 48px;
+        }
+
+        /* ----- Телефон и текст "Звоните нам" ----- */
+        .phone-wrapper {
+            margin-left: auto;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+        }
+
+        header.compact .phone-wrapper {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: auto;
+        }
+
+        .call-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted-light);
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+        }
+
+        header.compact .call-text {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .phone {
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 12px 24px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            background: rgba(6, 9, 17, 0.5);
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .phone:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* ----- Слайды ----- */
+        .fullscreen-slide {
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: var(--bg-dark);
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .hero {
+            display: flex;
+            justify-content: center;
+            background: radial-gradient(circle at 90% 10%, rgba(16, 185, 129, 0.08), transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 180px;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: 54px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            line-height: 1.65;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: #060911;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+            transform: scale(1.02);
+        }
+
+        /* ----- Split Layout ----- */
+        .split-layout {
+            display: flex;
+            width: 100%;
+            height: 80vh;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .slide-image-zone {
+            flex: 0 0 66.666%;
+            height: 80vh;
+            background: linear-gradient(135deg, #162235, #0b111c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 1;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+        }
+
+        .slide-image-zone img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .anim-slide-left .slide-image-zone {
+            transform: translate(-100%, 0%);
+            opacity: 0;
+        }
+
+        .anim-slide-left.animated .slide-image-zone {
+            transform: translate(0%, 0%);
+            opacity: 1;
+        }
+
+        .anim-slide-right .slide-image-zone {
+            transform: translate(100%, 0%);
+            opacity: 0;
+        }
+
+        .anim-slide-right.animated .slide-image-zone {
+            transform: translate(0%, 0%);
+            opacity: 1;
+        }
+
+        .slide-text-zone {
+            flex: 0 0 33.333%;
+            padding: 50px 60px;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #080c16;
+            z-index: 10;
+        }
+
+        .slide-text-zone h2,
+        .slide-text-zone p {
+            opacity: 0.3;
+            transform: translateY(10px);
+            transition: all 0.5s ease;
+        }
+
+        .fullscreen-slide:nth-child(even) .split-layout {
+            flex-direction: row-reverse;
+        }
+
+        .slide-text-zone h2 {
+            font-size: 34px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        .slide-text-zone h2 span {
+            color: var(--primary);
+        }
+
+        .slide-text-zone p {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-top: 15px;
+        }
+
+        .split-layout:hover .slide-text-zone h2 {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.1s;
+        }
+
+        .split-layout:hover .slide-text-zone p {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.2s;
+        }
+
+        /* ----- Typewriter Styles ----- */
+        .slide-text-zone .typing-title {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            min-height: 120px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .slide-text-zone .typing-title.show {
+            opacity: 1;
+        }
+
+        .slide-text-zone .typing-title .highlight {
+            color: var(--primary);
+        }
+
+        .slide-text-zone .typing-title .typing-text {
+            color: var(--text-main);
+        }
+
+        .slide-text-zone .typing-subtitle {
+            font-size: 18px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            min-height: 80px;
+        }
+
+        .slide-text-zone .typing-subtitle.show {
+            opacity: 1;
+        }
+
+        /* ----- Наши работы ----- */
+        .portfolio-section {
+            min-height: 100vh;
+            width: 100vw;
+            padding: 140px 20px 80px;
+            background: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .portfolio-section .section-title {
+            font-size: 42px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .portfolio-section .section-title span {
+            color: var(--primary);
+        }
+
+        .portfolio-section .section-subtitle {
+            color: var(--text-muted);
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 50px;
+            max-width: 600px;
+        }
+
+        /* Карточки объектов - по центру */
+        .portfolio-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1400px;
+            width: 100%;
+            margin-bottom: 40px;
+            padding: 10px 5px;
+            flex-wrap: wrap;
+        }
+
+        .portfolio-card {
+            flex: 0 0 220px;
+            cursor: pointer;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            background: var(--bg-card);
+            position: relative;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .portfolio-card.active {
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
+        }
+
+        .portfolio-card img {
+            width: 100%;
+            height: 165px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .portfolio-card .card-title {
+            padding: 12px 15px 16px;
+            font-size: 15px;
+            font-weight: 700;
+            text-align: center;
+            color: var(--text-main);
+        }
+
+        /* Галерея - большой слайдер с одной фотографией */
+        .portfolio-gallery {
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            background: var(--bg-card);
+        }
+
+        .gallery-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gallery-slide {
+            flex: 0 0 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            min-height: 500px;
+        }
+
+        .gallery-slide img {
+            max-width: 100%;
+            max-height: 70vh;
+            height: auto;
+            width: auto;
+            object-fit: contain;
+            border-radius: 12px;
+            display: block;
+        }
+
+        /* Стрелки навигации */
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(6, 9, 17, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .gallery-arrow:hover {
+            background: var(--primary);
+            color: #060911;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .gallery-arrow.prev {
+            left: 15px;
+        }
+
+        .gallery-arrow.next {
+            right: 15px;
+        }
+
+        /* Точки навигации */
+        .gallery-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 20px 0 15px;
+        }
+
+        .gallery-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--text-muted-light);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .gallery-dot.active {
+            background: var(--primary);
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        .gallery-dot:hover {
+            background: var(--primary);
+        }
+
+        /* ----- Форма ----- */
+        .form-container-slide {
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 120px 20px;
+            text-align: center;
+        }
+
+        .form-container-slide h2 {
+            font-size: 38px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .form-container-slide .form-subtitle {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-top: 10px;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-wrapper {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 50px;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            background: #060911;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 16px;
+            color: var(--text-main);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-muted-light);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group input.error {
+            border-color: #ef4444;
+        }
+
+        .form-group .error-message {
+            color: #ef4444;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-group .error-message.show {
+            display: block;
+        }
+
+        .form-wrapper .btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* ----- Адаптивность ----- */
+        @media (max-width: 1024px) {
+            .split-layout {
+                height: 70vh;
+            }
+            .slide-image-zone {
+                height: 70vh;
+            }
+            .slide-text-zone {
+                height: 70vh;
+                padding: 40px;
+            }
+            .slide-text-zone .typing-title {
+                font-size: 38px;
+                min-height: 90px;
+            }
+            .slide-text-zone .typing-subtitle {
+                font-size: 16px;
+            }
+            .portfolio-card {
+                flex: 0 0 180px;
+            }
+            .portfolio-card img {
+                height: 135px;
+            }
+            .gallery-slide {
+                min-height: 400px;
+            }
+            .gallery-slide img {
+                max-height: 60vh;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 12px 15px;
+            }
+            header.compact {
+                padding: 8px 15px;
+            }
+            .container {
+                height: 60px;
+            }
+            header.compact .container {
+                height: 45px;
+            }
+            .logo-img {
+                height: 60px;
+            }
+            header.compact .logo-img {
+                height: 40px;
+            }
+            .phone {
+                font-size: 12px;
+                padding: 8px 14px;
+            }
+            .call-text {
+                font-size: 11px;
+            }
+            .hero h1 {
+                font-size: 28px;
+            }
+            .hero p {
+                font-size: 15px;
+            }
+            .hero-content {
+                margin-top: 100px;
+                margin-bottom: 30px;
+            }
+
+            .split-layout {
+                flex-direction: column !important;
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .slide-image-zone {
+                flex: 0 0 45vh;
+                height: 45vh;
+                width: 100%;
+                transform: none !important;
+                opacity: 1 !important;
+            }
+
+            .anim-slide-left .slide-image-zone,
+            .anim-slide-right .slide-image-zone {
+                transform: none !important;
+                opacity: 1 !important;
+            }
+
+            .slide-text-zone {
+                flex: 0 0 auto;
+                padding: 30px 20px;
+                height: auto;
+                min-height: 40vh;
+            }
+
+            .slide-text-zone h2 {
+                font-size: 24px;
+                opacity: 1;
+                transform: none;
+            }
+
+            .slide-text-zone .typing-title {
+                font-size: 32px;
+                min-height: 70px;
+            }
+
+            .slide-text-zone .typing-subtitle {
+                font-size: 16px;
+                min-height: 60px;
+            }
+
+            .slide-text-zone p {
+                font-size: 14px;
+                opacity: 1;
+                transform: none;
+            }
+
+            .portfolio-section {
+                padding: 100px 15px 60px;
+            }
+            .portfolio-section .section-title {
+                font-size: 32px;
+            }
+            .portfolio-cards {
+                gap: 12px;
+                justify-content: center;
+            }
+            .portfolio-card {
+                flex: 0 0 150px;
+            }
+            .portfolio-card img {
+                height: 112px;
+            }
+            .portfolio-card .card-title {
+                font-size: 13px;
+                padding: 10px 10px 14px;
+            }
+            .gallery-slide {
+                min-height: 300px;
+                padding: 15px;
+            }
+            .gallery-slide img {
+                max-height: 50vh;
+            }
+            .gallery-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .gallery-arrow.prev {
+                left: 10px;
+            }
+            .gallery-arrow.next {
+                right: 10px;
+            }
+
+            .form-container-slide h2 {
+                font-size: 28px;
+            }
+            .form-container-slide .form-subtitle {
+                font-size: 15px;
+            }
+            .form-wrapper {
+                padding: 25px 20px;
+            }
+            .btn {
+                padding: 14px 30px;
+                font-size: 14px;
+            }
+            .phone-wrapper {
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 24px;
+            }
+            .logo-img {
+                height: 45px;
+            }
+            header.compact .logo-img {
+                height: 32px;
+            }
+            .phone {
+                font-size: 11px;
+                padding: 6px 12px;
+            }
+            .call-text {
+                font-size: 10px;
+            }
+            .slide-text-zone h2 {
+                font-size: 20px;
+            }
+            .slide-text-zone .typing-title {
+                font-size: 26px;
+                min-height: 60px;
+            }
+            .slide-text-zone .typing-subtitle {
+                font-size: 14px;
+                min-height: 50px;
+            }
+            .slide-image-zone {
+                flex: 0 0 35vh;
+                height: 35vh;
+            }
+            .portfolio-card {
+                flex: 0 0 130px;
+            }
+            .portfolio-card img {
+                height: 97px;
+            }
+            .portfolio-card .card-title {
+                font-size: 12px;
+                padding: 8px 8px 12px;
+            }
+            .gallery-slide {
+                min-height: 250px;
+                padding: 10px;
+            }
+            .gallery-slide img {
+                max-height: 40vh;
+            }
+            .gallery-arrow {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+            .gallery-arrow.prev {
+                left: 5px;
+            }
+            .gallery-arrow.next {
+                right: 5px;
+            }
+            .form-container-slide h2 {
+                font-size: 24px;
+            }
+            .form-container-slide .form-subtitle {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container">
+            <a href="#" class="logo-link" aria-label="Лейка - системы автополива">
+                <img src="logo.png" alt="Автополив Лейка Логотип" class="logo-img" width="130" height="130" loading="lazy">
+            </a>
+            <div class="phone-wrapper">
+                <span class="call-text">Звоните нам</span>
+                <a href="tel:+79189080570" class="phone" aria-label="Позвонить +7 (918) 908-05-70">+7 (918) 908-05-70</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Слайд 1: Герой -->
+    <section class="fullscreen-slide hero" id="hero">
+        <div class="hero-content">
+            <h1>Инженерные системы <span>автоматического полива</span></h1>
+            <p>Индивидуальное проектирование с гидравлическими расчетами. Полный цикл от монтажа до запуска и сезонного обслуживания систем. Работаем строго по договору, фиксируем стоимость до начала работ и сдаем объекты точно в срок.</p>
+            <a href="#order" class="btn">Записаться на бесплатный выезд инженера</a>
+        </div>
+    </section>
+
+    <!-- Слайд 2: Картинка выезжает слева -->
+    <section class="fullscreen-slide anim-slide-left" id="slide1">
+        <div class="split-layout">
+            <div class="slide-image-zone">
+                <img src="polyv.jpg" alt="Ювелирный монтаж автополива Лейка" loading="lazy" width="1650" height="1070">
+            </div>
+            <div class="slide-text-zone">
+                <h2 class="typing-title">
+                    <span class="highlight">Красивый газон</span>
+                    <span class="typing-text"></span>
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- Слайд 3: Картинка выезжает справа -->
+    <section class="fullscreen-slide anim-slide-right" id="slide2">
+        <div class="split-layout">
+            <div class="slide-image-zone">
+                <img src="polyv2.jpg" alt="Автономная система автоматического полива" loading="lazy" width="1650" height="1070">
+            </div>
+            <div class="slide-text-zone">
+                <h2 class="typing-title">
+                    <span class="highlight">Автономная</span>
+                    <span class="typing-text"></span>
+                </h2>
+                <p class="typing-subtitle"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Слайд 4: Картинка выезжает слева -->
+    <section class="fullscreen-slide anim-slide-left" id="slide3">
+        <div class="split-layout">
+            <div class="slide-image-zone">
+                <img src="polyv3.jpg" alt="Инженерный расчет системы автоматического полива" loading="lazy" width="1650" height="1070">
+            </div>
+            <div class="slide-text-zone">
+                <h2 class="typing-title">
+                    <span class="highlight">Инженерный расчет</span>
+                    <span class="typing-text"></span>
+                </h2>
+                <p class="typing-subtitle"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок: Наши работы -->
+    <section class="portfolio-section" id="portfolio">
+        <h2 class="section-title">Наши <span>работы</span></h2>
+        <p class="section-subtitle">Реальные объекты, реализованные нашей командой</p>
+
+        <div class="portfolio-cards" id="portfolioCards">
+            <!-- Карточки будут добавлены через JS -->
+        </div>
+
+        <div class="portfolio-gallery">
+            <button class="gallery-arrow prev" id="galleryPrev" aria-label="Предыдущее фото">‹</button>
+            <button class="gallery-arrow next" id="galleryNext" aria-label="Следующее фото">›</button>
+            
+            <div class="gallery-track" id="galleryTrack">
+                <!-- Галереи будут добавлены через JS -->
+            </div>
+            
+            <div class="gallery-nav" id="galleryNav">
+                <!-- Точки навигации будут добавлены через JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Слайд 5: Форма -->
+    <section class="fullscreen-slide" id="order">
+        <div class="form-container-slide">
+            <h2>Записаться на <span style="color: var(--primary);">бесплатный выезд инженера</span></h2>
+            <p class="form-subtitle">Приедем в удобное для вас время, проведем консультацию и произведем замер. Уже на следующий день вы получите полную схему вашего автополива с точной сметой всех материалов и работ.</p>
+            <div class="form-wrapper">
+                <form id="callbackForm" action="#" method="POST" novalidate>
+                    <div class="form-group">
+                        <label for="name">Ваше имя</label>
+                        <input type="text" id="name" name="name" placeholder="" required>
+                        <div class="error-message" id="nameError">Пожалуйста, введите ваше имя</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Номер телефона</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+7 (___)-___-__-__" required maxlength="18">
+                        <div class="error-message" id="phoneError">Пожалуйста, введите корректный номер телефона</div>
+                    </div>
+                    <button type="submit" class="btn">Записаться на выезд</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- 1. СКРОЛЛ ХЕДЕРА ---
+            const header = document.getElementById('header');
+            const SCROLL_THRESHOLD = 30;
+
+            function handleScroll() {
+                const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+                header.classList.toggle('compact', scrollY > SCROLL_THRESHOLD);
+            }
+
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            handleScroll();
+
+            // --- 2. АНИМАЦИЯ ВЫЕЗЖАНИЯ КАРТИНОК ---
+            function animateSlideOnEnter(slideElement) {
+                if (!slideElement) return;
+                if (slideElement.classList.contains('animated')) return;
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            slideElement.classList.add('animated');
+                            observer.disconnect();
+                        }
+                    });
+                }, {
+                    threshold: 0.1
+                });
+
+                observer.observe(slideElement);
+            }
+
+            const slide1 = document.getElementById('slide1');
+            const slide2 = document.getElementById('slide2');
+            const slide3 = document.getElementById('slide3');
+
+            if (slide1) animateSlideOnEnter(slide1);
+            if (slide2) animateSlideOnEnter(slide2);
+            if (slide3) animateSlideOnEnter(slide3);
+
+            setTimeout(() => {
+                if (slide1 && !slide1.classList.contains('animated')) {
+                    const rect = slide1.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        slide1.classList.add('animated');
+                    }
+                }
+                if (slide2 && !slide2.classList.contains('animated')) {
+                    const rect = slide2.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        slide2.classList.add('animated');
+                    }
+                }
+                if (slide3 && !slide3.classList.contains('animated')) {
+                    const rect = slide3.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        slide3.classList.add('animated');
+                    }
+                }
+            }, 100);
+
+            // --- 3. TYPEWRITER ---
+            function typeWriter(element, text, speed = 25) {
+                return new Promise((resolve) => {
+                    let i = 0;
+                    element.textContent = '';
+
+                    function type() {
+                        if (i < text.length) {
+                            element.textContent += text.charAt(i);
+                            i++;
+                            setTimeout(type, speed);
+                        } else {
+                            resolve();
+                        }
+                    }
+                    setTimeout(type, 200);
+                });
+            }
+
+            function setupTypingEffect(slideId, textForTyping, subtitleText = null, speed = 25) {
+                const slide = document.getElementById(slideId);
+                if (!slide) return;
+
+                const titleElement = slide.querySelector('.typing-title');
+                const textElement = slide.querySelector('.typing-text');
+                const subtitleElement = slide.querySelector('.typing-subtitle');
+
+                if (!titleElement || !textElement) return;
+
+                let isTypingStarted = false;
+
+                function startTyping() {
+                    if (isTypingStarted) return;
+                    isTypingStarted = true;
+                    titleElement.classList.add('show');
+                    typeWriter(textElement, textForTyping, speed).then(() => {
+                        if (subtitleText && subtitleElement) {
+                            subtitleElement.classList.add('show');
+                            typeWriter(subtitleElement, subtitleText, speed);
+                        }
+                    });
+                }
+
+                slide.addEventListener('mouseenter', startTyping, { passive: true });
+                slide.addEventListener('touchstart', startTyping, { passive: true });
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !isTypingStarted) {
+                            startTyping();
+                        }
+                    });
+                }, { threshold: 0.3 });
+                observer.observe(slide);
+            }
+
+            setupTypingEffect('slide1', ' — это во многом заслуга правильного полива', null, 30);
+            setupTypingEffect('slide2', ' и полностью автоматическая система', 'Никаких ручных переключений — система сама включает насос, поддерживает давление и запускает зоны полива. При дожде — автоматическая пауза.', 25);
+            setupTypingEffect('slide3', ' — прозрачная смета', 'Схема полива с гидравлическим расчетом, список оборудования с точным количеством, площадь поливаемых зон — всё в одном документе. Никаких скрытых работ и неучтенных материалов.', 25);
+
+            // --- 4. ПОРТФОЛИО (ВСЕ 5 КАРТОЧЕК) ---
+            const portfolioData = [{
+                id: 0,
+                title: 'Коттеджный поселок "Вавиловец"',
+                mainImage: 'work1.jpg',
+                gallery: ['work1_1.jpg', 'work1_2.jpg', 'work1_3.jpg', 'work1_4.jpg', 'work1_5.jpg']
+            }, {
+                id: 1,
+                title: 'Загородный дом "Лесной"',
+                mainImage: 'work2.jpg',
+                gallery: ['work2_1.jpg', 'work2_2.jpg', 'work2_3.jpg', 'work2_4.jpg', 'work2_5.jpg']
+            }, {
+                id: 2,
+                title: 'Усадьба "Озерная"',
+                mainImage: 'work3.jpg',
+                gallery: ['work3_1.jpg', 'work3_2.jpg', 'work3_3.jpg', 'work3_4.jpg', 'work3_5.jpg']
+            }, {
+                id: 3,
+                title: 'Парк "Центральный"',
+                mainImage: 'work4.jpg',
+                gallery: ['work4_1.jpg', 'work4_2.jpg', 'work4_3.jpg', 'work4_4.jpg', 'work4_5.jpg']
+            }, {
+                id: 4,
+                title: 'Вилла "Морская"',
+                mainImage: 'work5.jpg',
+                gallery: ['work5_1.jpg', 'work5_2.jpg', 'work5_3.jpg', 'work5_4.jpg', 'work5_5.jpg']
+            }];
+
+            let currentPortfolioIndex = 0;
+            let currentSlideIndex = 0;
+            const cardsContainer = document.getElementById('portfolioCards');
+            const track = document.getElementById('galleryTrack');
+            const navContainer = document.getElementById('galleryNav');
+            const prevBtn = document.getElementById('galleryPrev');
+            const nextBtn = document.getElementById('galleryNext');
+
+            // Рендерим карточки
+            function renderCards() {
+                portfolioData.forEach((item, index) => {
+                    const card = document.createElement('div');
+                    card.className = `portfolio-card${index === 0 ? ' active' : ''}`;
+                    card.dataset.index = index;
+                    card.innerHTML = `
+                        <img src="${item.mainImage}" alt="${item.title}" loading="lazy" width="220" height="165">
+                        <div class="card-title">${item.title}</div>
+                    `;
+                    card.addEventListener('click', function() {
+                        const idx = parseInt(this.dataset.index);
+                        setActivePortfolio(idx);
+                    });
+                    cardsContainer.appendChild(card);
+                });
+            }
+
+            // Рендерим галереи (по одному большому фото)
+            function renderGalleries() {
+                portfolioData.forEach((item) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'gallery-slide';
+                    const img = document.createElement('img');
+                    img.src = item.gallery[0];
+                    img.alt = item.title;
+                    img.loading = 'lazy';
+                    img.dataset.portfolioIndex = item.id;
+                    img.dataset.photoIndex = 0;
+                    slide.appendChild(img);
+                    track.appendChild(slide);
+                });
+            }
+
+            // Рендерим точки навигации
+            function renderDots() {
+                portfolioData.forEach((_, index) => {
+                    const dot = document.createElement('button');
+                    dot.className = `gallery-dot${index === 0 ? ' active' : ''}`;
+                    dot.dataset.index = index;
+                    dot.setAttribute('aria-label', `Перейти к объекту ${index + 1}`);
+                    dot.addEventListener('click', function() {
+                        const idx = parseInt(this.dataset.index);
+                        setActivePortfolio(idx);
+                    });
+                    navContainer.appendChild(dot);
+                });
+            }
+
+            function setActivePortfolio(index) {
+                if (index === currentPortfolioIndex) return;
+                currentPortfolioIndex = index;
+                currentSlideIndex = 0;
+
+                document.querySelectorAll('.portfolio-card').forEach((card, i) => {
+                    card.classList.toggle('active', i === index);
+                });
+
+                track.style.transform = `translateX(-${index * 100}%)`;
+
+                document.querySelectorAll('.gallery-dot').forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+
+                const slides = track.querySelectorAll('.gallery-slide');
+                slides.forEach((slide, i) => {
+                    if (i === index) {
+                        const img = slide.querySelector('img');
+                        if (img) {
+                            img.src = portfolioData[index].gallery[0];
+                            img.dataset.photoIndex = 0;
+                        }
+                    }
+                });
+            }
+
+            // Функция для смены фото внутри текущего объекта
+            function changePhoto(direction) {
+                const slides = track.querySelectorAll('.gallery-slide');
+                const currentSlide = slides[currentPortfolioIndex];
+                if (!currentSlide) return;
+
+                const img = currentSlide.querySelector('img');
+                if (!img) return;
+
+                const currentPhotoIndex = parseInt(img.dataset.photoIndex) || 0;
+                const gallery = portfolioData[currentPortfolioIndex].gallery;
+                let newIndex = currentPhotoIndex + direction;
+
+                if (newIndex < 0) newIndex = gallery.length - 1;
+                if (newIndex >= gallery.length) newIndex = 0;
+
+                img.src = gallery[newIndex];
+                img.dataset.photoIndex = newIndex;
+            }
+
+            // Обработчики стрелок
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    changePhoto(-1);
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    changePhoto(1);
+                });
+            }
+
+            // Клавиатурная навигация
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft') {
+                    changePhoto(-1);
+                } else if (e.key === 'ArrowRight') {
+                    changePhoto(1);
+                }
+            });
+
+            renderCards();
+            renderGalleries();
+            renderDots();
+
+            // --- 5. МАСКА ТЕЛЕФОНА ---
+            const phoneInput = document.getElementById('phone');
+
+            function formatPhoneNumber(value) {
+                const numbers = value.replace(/\D/g, '');
+                const limited = numbers.slice(0, 11);
+                if (limited.length === 0) return '+7 (';
+                let formatted = '+7 (';
+                if (limited.length > 1) {
+                    formatted += limited.slice(1, 4);
+                }
+                if (limited.length > 4) {
+                    formatted += ') ' + limited.slice(4, 7);
+                }
+                if (limited.length > 7) {
+                    formatted += '-' + limited.slice(7, 9);
+                }
+                if (limited.length > 9) {
+                    formatted += '-' + limited.slice(9, 11);
+                }
+                return formatted;
+            }
+
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function(e) {
+                    const cursorPosition = this.selectionStart;
+                    const oldLength = this.value.length;
+                    this.value = formatPhoneNumber(this.value);
+                    const newLength = this.value.length;
+                    const diff = newLength - oldLength;
+                    this.setSelectionRange(cursorPosition + diff, cursorPosition + diff);
+                });
+                phoneInput.value = '+7 (';
+            }
+
+            // --- 6. ФОРМА ---
+            const form = document.getElementById('callbackForm');
+
+            function showError(inputId, errorId) {
+                const input = document.getElementById(inputId);
+                const error = document.getElementById(errorId);
+                if (input) input.classList.add('error');
+                if (error) error.classList.add('show');
+            }
+
+            function hideError(inputId, errorId) {
+                const input = document.getElementById(inputId);
+                const error = document.getElementById(errorId);
+                if (input) input.classList.remove('error');
+                if (error) error.classList.remove('show');
+            }
+
+            function validatePhone(phone) {
+                const numbers = phone.replace(/\D/g, '');
+                return numbers.length >= 10;
+            }
+
+            if (form) {
+                const nameInput = document.getElementById('name');
+
+                nameInput.addEventListener('input', function() {
+                    if (this.value.trim().length > 0) {
+                        hideError('name', 'nameError');
+                    }
+                });
+
+                phoneInput.addEventListener('input', function() {
+                    const numbers = this.value.replace(/\D/g, '');
+                    if (numbers.length >= 10) {
+                        hideError('phone', 'phoneError');
+                    }
+                });
+
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    const name = nameInput.value.trim();
+                    const phone = phoneInput.value.trim();
+
+                    let isValid = true;
+
+                    if (!name || name.length < 2) {
+                        showError('name', 'nameError');
+                        isValid = false;
+                    } else {
+                        hideError('name', 'nameError');
+                    }
+
+                    if (!validatePhone(phone)) {
+                        showError('phone', 'phoneError');
+                        isValid = false;
+                    } else {
+                        hideError('phone', 'phoneError');
+                    }
+
+                    if (!isValid) {
+                        const firstError = document.querySelector('.form-group .error.show');
+                        if (firstError) {
+                            const parent = firstError.closest('.form-group');
+                            const input = parent.querySelector('input');
+                            if (input) input.focus();
+                        }
+                        return;
+                    }
+
+                    console.log('Отправка формы:', { name, phone });
+                    alert('Спасибо, ' + name + '! Мы свяжемся с вами в ближайшее время для согласования выезда инженера.');
+                    form.reset();
+                    if (phoneInput) {
+                        phoneInput.value = '+7 (';
+                    }
+                    hideError('name', 'nameError');
+                    hideError('phone', 'phoneError');
+                });
+            }
+
+            // --- 7. ПЛАВНАЯ ПРОКРУТКА ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        const headerHeight = header.offsetHeight;
+                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+        });
+    </script>
+
+</body>
+</html>
