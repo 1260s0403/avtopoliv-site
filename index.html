@@ -357,9 +357,10 @@
     opacity: 0;
 }
 
-.fullscreen-slide:nth-child(4).animated .slide-text-zone {
-    transform: translateX(0);
-    opacity: 1;
+/* Принудительное отображение для третьего слайда */
+.fullscreen-slide:nth-child(4) .slide-text-zone {
+    transform: translateX(0) !important;
+    opacity: 1 !important;
 }
 
         /* ----- Typewriter Styles ----- */
