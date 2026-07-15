@@ -16,13 +16,14 @@
             --primary-light: #34d399;
             --bg-dark: #060911;
             --bg-card: #0d1321;
-            --bg-text-block: #0f172a;
+            --bg-text-block: #1a2332;
             --text-main: #f8fafc;
             --text-muted: #cbd5e1;
             --text-muted-light: #94a3b8;
             --border: rgba(255, 255, 255, 0.06);
             --header-height: 90px;
             --header-compact-height: 50px;
+            --glass-bg: rgba(15, 23, 42, 0.6);
         }
 
         * {
@@ -43,8 +44,6 @@
         /* ----- Header с градиентом ----- */
         header {
             background: linear-gradient(180deg, rgba(6, 9, 17, 0.95) 0%, transparent 100%);
-            backdrop-filter: blur(0px);
-            border-bottom: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -97,14 +96,13 @@
             width: auto;
             object-fit: contain;
             transition: height 0.3s ease;
-            background: transparent;
         }
 
         header.compact .logo-img {
             height: 55px;
         }
 
-        /* ----- Телефон и текст "Звоните нам" ----- */
+        /* ----- Телефон ----- */
         .phone-wrapper {
             margin-left: auto;
             z-index: 10;
@@ -172,10 +170,21 @@
             padding: 0 50px;
         }
 
+        /* Пульсирующий фон для героя */
         .hero {
             display: flex;
             justify-content: center;
             background: radial-gradient(circle at 90% 10%, rgba(16, 185, 129, 0.08), transparent 50%);
+            animation: pulse-bg 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse-bg {
+            0%, 100% {
+                background: radial-gradient(circle at 90% 10%, rgba(16, 185, 129, 0.08), transparent 50%);
+            }
+            50% {
+                background: radial-gradient(circle at 90% 10%, rgba(16, 185, 129, 0.15), transparent 60%);
+            }
         }
 
         .hero-content {
@@ -225,7 +234,6 @@
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
         }
 
         .btn:hover {
@@ -287,6 +295,7 @@
             opacity: 1;
         }
 
+        /* СТЕКЛЯННЫЙ ЭФФЕКТ для текстового блока */
         .slide-text-zone {
             flex: 0 0 33.333%;
             padding: 50px 60px;
@@ -294,8 +303,9 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background: rgba(15, 23, 42, 0.6);
+            background: var(--glass-bg);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.05);
             z-index: 10;
         }
@@ -337,7 +347,6 @@
         }
 
         /* ----- Анимация выезжания текстового блока (по ID) ----- */
-        /* Слайд 1 (первый с картинкой) - выезжает справа */
         #slide1 .slide-text-zone {
             transform: translateX(100%);
             opacity: 0;
@@ -349,7 +358,6 @@
             opacity: 1;
         }
 
-        /* Слайд 2 (второй с картинкой) - выезжает слева */
         #slide2 .slide-text-zone {
             transform: translateX(-100%);
             opacity: 0;
@@ -361,7 +369,6 @@
             opacity: 1;
         }
 
-        /* Слайд 3 (третий с картинкой) - выезжает справа */
         #slide3 .slide-text-zone {
             transform: translateX(100%);
             opacity: 0;
@@ -440,7 +447,6 @@
             max-width: 600px;
         }
 
-        /* Карточки объектов - по центру */
         .portfolio-cards {
             display: flex;
             justify-content: center;
@@ -490,7 +496,6 @@
             color: var(--text-main);
         }
 
-        /* Галерея - большой слайдер с одной фотографией */
         .portfolio-gallery {
             max-width: 1200px;
             width: 100%;
@@ -525,7 +530,6 @@
             display: block;
         }
 
-        /* Стрелки навигации */
         .gallery-arrow {
             position: absolute;
             top: 50%;
@@ -562,7 +566,6 @@
             right: 15px;
         }
 
-        /* Точки навигации */
         .gallery-nav {
             display: flex;
             justify-content: center;
@@ -591,7 +594,6 @@
             background: var(--primary);
         }
 
-        /* ----- Форма ----- */
         .form-container-slide {
             max-width: 600px;
             margin: 0 auto;
@@ -788,7 +790,6 @@
                 backdrop-filter: blur(10px);
             }
 
-            /* Отключаем анимацию выезжания текста на мобильных */
             #slide1 .slide-text-zone,
             #slide2 .slide-text-zone,
             #slide3 .slide-text-zone {
@@ -1095,7 +1096,8 @@
                         }
                     });
                 }, {
-                    threshold: 0.1                });
+                    threshold: 0.1
+                });
 
                 observer.observe(slideElement);
             }
@@ -1190,7 +1192,7 @@
             setupTypingEffect('slide2', ' и полностью автоматическая система', 'Никаких ручных переключений — система сама включает насос, поддерживает давление и запускает зоны полива. При дожде — автоматическая пауза.', 25);
             setupTypingEffect('slide3', ' — прозрачная смета', 'Схема полива с гидравлическим расчетом, список оборудования с точным количеством, площадь поливаемых зон — всё в одном документе. Никаких скрытых работ и неучтенных материалов.', 25);
 
-            // --- 4. ПОРТФОЛИО (ВСЕ 5 КАРТОЧЕК) ---
+            // --- 4. ПОРТФОЛИО ---
             const portfolioData = [{
                 id: 0,
                 title: 'Коттеджный поселок "Вавиловец"',
@@ -1219,14 +1221,12 @@
             }];
 
             let currentPortfolioIndex = 0;
-            let currentSlideIndex = 0;
             const cardsContainer = document.getElementById('portfolioCards');
             const track = document.getElementById('galleryTrack');
             const navContainer = document.getElementById('galleryNav');
             const prevBtn = document.getElementById('galleryPrev');
             const nextBtn = document.getElementById('galleryNext');
 
-            // Рендерим карточки
             function renderCards() {
                 portfolioData.forEach((item, index) => {
                     const card = document.createElement('div');
@@ -1244,7 +1244,6 @@
                 });
             }
 
-            // Рендерим галереи (по одному большому фото)
             function renderGalleries() {
                 portfolioData.forEach((item) => {
                     const slide = document.createElement('div');
@@ -1260,7 +1259,6 @@
                 });
             }
 
-            // Рендерим точки навигации
             function renderDots() {
                 portfolioData.forEach((_, index) => {
                     const dot = document.createElement('button');
@@ -1278,7 +1276,6 @@
             function setActivePortfolio(index) {
                 if (index === currentPortfolioIndex) return;
                 currentPortfolioIndex = index;
-                currentSlideIndex = 0;
 
                 document.querySelectorAll('.portfolio-card').forEach((card, i) => {
                     card.classList.toggle('active', i === index);
@@ -1302,7 +1299,6 @@
                 });
             }
 
-            // Функция для смены фото внутри текущего объекта
             function changePhoto(direction) {
                 const slides = track.querySelectorAll('.gallery-slide');
                 const currentSlide = slides[currentPortfolioIndex];
@@ -1322,7 +1318,6 @@
                 img.dataset.photoIndex = newIndex;
             }
 
-            // Обработчики стрелок
             if (prevBtn) {
                 prevBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
@@ -1337,7 +1332,6 @@
                 });
             }
 
-            // Клавиатурная навигация
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'ArrowLeft') {
                     changePhoto(-1);
