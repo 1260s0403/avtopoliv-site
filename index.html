@@ -172,7 +172,7 @@
             padding: 0 50px;
         }
 
-        /* ----- Hero с двумя градиентами (по очереди) ----- */
+        /* ----- Hero с плавным переливающимся светом ----- */
 .hero {
     display: flex;
     justify-content: center;
@@ -181,92 +181,58 @@
     background: var(--bg-dark);
 }
 
-/* Первый градиент (из верхнего правого угла) */
-.hero::before {
-    content: '';
-    position: absolute;
-    top: -100%;
-    left: -100%;
-    width: 300%;
-    height: 300%;
-    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.10) 40%, transparent 70%);
-    animation: float-gradient-1 16s ease-in-out infinite;
-    pointer-events: none;
-    will-change: transform, opacity;
-}
-
-/* Второй градиент (из нижнего левого угла) - появляется после первого */
+/* Общий стиль для обоих градиентов */
+.hero::before,
 .hero::after {
     content: '';
     position: absolute;
-    bottom: -100%;
-    right: -100%;
-    width: 300%;
-    height: 300%;
-    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.10) 40%, transparent 70%);
-    animation: float-gradient-2 16s ease-in-out infinite;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.08) 40%, transparent 70%);
     pointer-events: none;
     will-change: transform, opacity;
+    transition: none; /* Анимация будет через keyframes */
 }
 
-@keyframes float-gradient-1 {
-    0% {
-        transform: translate(0%, 0%);
-        opacity: 1;
-    }
-    12.5% {
-        transform: translate(66%, -66%);
-        opacity: 1;
-    }
-    25% {
-        transform: translate(0%, 0%);
-        opacity: 1;
-    }
-    37.5% {
-        transform: translate(66%, -66%);
-        opacity: 0.5;
-    }
-    50% {
-        transform: translate(0%, 0%);
-        opacity: 0;
-    }
-    100% {
-        transform: translate(0%, 0%);
-        opacity: 0;
-    }
+/* Первый градиент: из правого верхнего угла */
+.hero::before {
+    top: -50%;
+    right: -50%;
+    animation: light-sweep 10s ease-in-out infinite;
 }
 
-@keyframes float-gradient-2 {
+/* Второй градиент: из левого нижнего угла */
+.hero::after {
+    bottom: -50%;
+    left: -50%;
+    animation: light-sweep 10s ease-in-out infinite 5s; /* Задержка 5 секунд */
+}
+
+/* Сама анимация: движение по диагонали с изменением прозрачности */
+@keyframes light-sweep {
     0% {
-        transform: translate(0%, 0%);
+        transform: translate(0%, 0%) scale(0.8);
         opacity: 0;
     }
-    25% {
-        transform: translate(0%, 0%);
-        opacity: 0;
+    15% {
+        opacity: 1;
     }
-    37.5% {
-        transform: translate(0%, 0%);
+    35% {
+        transform: translate(-40%, -40%) scale(1.2);
         opacity: 1;
     }
     50% {
-        transform: translate(-66%, 66%);
         opacity: 1;
     }
-    62.5% {
-        transform: translate(0%, 0%);
-        opacity: 1;
+    65% {
+        transform: translate(-80%, -80%) scale(1.4);
+        opacity: 0.7;
     }
-    75% {
-        transform: translate(-66%, 66%);
-        opacity: 0.5;
-    }
-    87.5% {
-        transform: translate(0%, 0%);
+    85% {
         opacity: 0;
     }
     100% {
-        transform: translate(0%, 0%);
+        transform: translate(0%, 0%) scale(0.8);
         opacity: 0;
     }
 }
