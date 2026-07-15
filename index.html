@@ -172,7 +172,7 @@
             padding: 0 50px;
         }
 
-        /* ----- Hero с двумя перекрестными градиентами ----- */
+        /* ----- Hero с двумя градиентами (по очереди) ----- */
 .hero {
     display: flex;
     justify-content: center;
@@ -190,12 +190,12 @@
     width: 300%;
     height: 300%;
     background: radial-gradient(circle at center, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.10) 40%, transparent 70%);
-    animation: float-gradient-1 8s ease-in-out infinite;
+    animation: float-gradient-1 16s ease-in-out infinite;
     pointer-events: none;
-    will-change: transform;
+    will-change: transform, opacity;
 }
 
-/* Второй градиент (из нижнего левого угла) */
+/* Второй градиент (из нижнего левого угла) - появляется после первого */
 .hero::after {
     content: '';
     position: absolute;
@@ -204,9 +204,9 @@
     width: 300%;
     height: 300%;
     background: radial-gradient(circle at center, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.10) 40%, transparent 70%);
-    animation: float-gradient-2 8s ease-in-out infinite;
+    animation: float-gradient-2 16s ease-in-out infinite;
     pointer-events: none;
-    will-change: transform;
+    will-change: transform, opacity;
 }
 
 @keyframes float-gradient-1 {
@@ -214,13 +214,25 @@
         transform: translate(0%, 0%);
         opacity: 1;
     }
-    50% {
+    12.5% {
         transform: translate(66%, -66%);
         opacity: 1;
     }
-    100% {
+    25% {
         transform: translate(0%, 0%);
         opacity: 1;
+    }
+    37.5% {
+        transform: translate(66%, -66%);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translate(0%, 0%);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0%, 0%);
+        opacity: 0;
     }
 }
 
@@ -229,13 +241,33 @@
         transform: translate(0%, 0%);
         opacity: 0;
     }
+    25% {
+        transform: translate(0%, 0%);
+        opacity: 0;
+    }
+    37.5% {
+        transform: translate(0%, 0%);
+        opacity: 1;
+    }
     50% {
         transform: translate(-66%, 66%);
+        opacity: 1;
+    }
+    62.5% {
+        transform: translate(0%, 0%);
+        opacity: 1;
+    }
+    75% {
+        transform: translate(-66%, 66%);
+        opacity: 0.5;
+    }
+    87.5% {
+        transform: translate(0%, 0%);
         opacity: 0;
     }
     100% {
         transform: translate(0%, 0%);
-        opacity: 1;
+        opacity: 0;
     }
 }
 
