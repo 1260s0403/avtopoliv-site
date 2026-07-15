@@ -172,32 +172,47 @@
             padding: 0 50px;
         }
 
-        /* ----- Hero с плавающим градиентом ----- */
+        /* ----- Hero с плавающим градиентом (циклический) ----- */
 .hero {
     display: flex;
     justify-content: center;
-    background: radial-gradient(circle at 0% 100%, rgba(16, 185, 129, 0.25), transparent 50%);
-    animation: floating-gradient 3s ease-in-out infinite alternate;
+    background: radial-gradient(circle at 0% 100%, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.05) 60%);
+    animation: floating-gradient 4s linear infinite;
 }
 
 @keyframes floating-gradient {
     0% {
-        background: radial-gradient(circle at 0% 100%, rgba(16, 185, 129, 0.30), transparent 50%);
+        background: radial-gradient(circle at 0% 100%, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.05) 60%);
+    }
+    10% {
+        background: radial-gradient(circle at 10% 90%, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.05) 60%);
     }
     20% {
-        background: radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.25), transparent 50%);
+        background: radial-gradient(circle at 25% 75%, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.05) 60%);
+    }
+    30% {
+        background: radial-gradient(circle at 40% 60%, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.05) 60%);
     }
     40% {
-        background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.20), transparent 50%);
+        background: radial-gradient(circle at 55% 45%, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.05) 60%);
+    }
+    50% {
+        background: radial-gradient(circle at 70% 30%, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.05) 60%);
     }
     60% {
-        background: radial-gradient(circle at 80% 30%, rgba(16, 185, 129, 0.25), transparent 50%);
+        background: radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.05) 60%);
+    }
+    70% {
+        background: radial-gradient(circle at 90% 10%, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.05) 60%);
     }
     80% {
-        background: radial-gradient(circle at 90% 20%, rgba(16, 185, 129, 0.28), transparent 50%);
+        background: radial-gradient(circle at 95% 5%, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.05) 60%);
+    }
+    90% {
+        background: radial-gradient(circle at 100% 0%, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.05) 60%);
     }
     100% {
-        background: radial-gradient(circle at 100% 0%, rgba(16, 185, 129, 0.30), transparent 50%);
+        background: radial-gradient(circle at 0% 100%, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.05) 60%);
     }
 }
 
