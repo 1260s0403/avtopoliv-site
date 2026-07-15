@@ -172,54 +172,54 @@
             padding: 0 50px;
         }
 
-        /* ----- Hero с супер-плавным градиентом ----- */
+        /* ----- Hero с непрерывно плавающим градиентом ----- */
 .hero {
     display: flex;
     justify-content: center;
-    background: radial-gradient(circle at 0% 100%, rgba(16, 185, 129, 0.30), rgba(16, 185, 129, 0.03) 50%, rgba(16, 185, 129, 0.08) 80%);
-    animation: floating-gradient 6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-dark);
 }
 
-@keyframes floating-gradient {
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.25), rgba(16, 185, 129, 0.08) 50%, transparent 70%);
+    animation: float-gradient 10s ease-in-out infinite;
+    pointer-events: none;
+    will-change: transform;
+}
+
+@keyframes float-gradient {
     0% {
-        background: radial-gradient(circle at 0% 100%, rgba(16, 185, 129, 0.30), rgba(16, 185, 129, 0.03) 50%, rgba(16, 185, 129, 0.08) 80%);
-    }
-    8.33% {
-        background: radial-gradient(circle at 12% 88%, rgba(16, 185, 129, 0.30), rgba(16, 185, 129, 0.03) 50%, rgba(16, 185, 129, 0.08) 80%);
-    }
-    16.66% {
-        background: radial-gradient(circle at 25% 75%, rgba(16, 185, 129, 0.30), rgba(16, 185, 129, 0.03) 50%, rgba(16, 185, 129, 0.08) 80%);
+        transform: translate(-30%, -30%);
     }
     25% {
-        background: radial-gradient(circle at 37% 63%, rgba(16, 185, 129, 0.30), rgba(16, 185, 129, 0.03) 50%, rgba(16, 185, 129, 0.08) 80%);
-    }
-    33.33% {
-        background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.30), rgba(16, 185, 129, 0.03) 50%, rgba(16, 185, 129, 0.08) 80%);
-    }
-    41.66% {
-        background: radial-gradient(circle at 62% 38%, rgba(16, 185, 129, 0.30), rgba(16, 185, 129, 0.03) 50%, rgba(16, 185, 129, 0.08) 80%);
+        transform: translate(30%, -30%);
     }
     50% {
-        background: radial-gradient(circle at 75% 25%, rgba(16, 185, 129, 0.30), rgba(16, 185, 129, 0.03) 50%, rgba(16, 185, 129, 0.08) 80%);
-    }
-    58.33% {
-        background: radial-gradient(circle at 85% 15%, rgba(16, 185, 129, 0.30), rgba(16, 185, 129, 0.03) 50%, rgba(16, 185, 129, 0.08) 80%);
-    }
-    66.66% {
-        background: radial-gradient(circle at 93% 7%, rgba(16, 185, 129, 0.30), rgba(16, 185, 129, 0.03) 50%, rgba(16, 185, 129, 0.08) 80%);
+        transform: translate(30%, 30%);
     }
     75% {
-        background: radial-gradient(circle at 97% 3%, rgba(16, 185, 129, 0.30), rgba(16, 185, 129, 0.03) 50%, rgba(16, 185, 129, 0.08) 80%);
-    }
-    83.33% {
-        background: radial-gradient(circle at 100% 0%, rgba(16, 185, 129, 0.30), rgba(16, 185, 129, 0.03) 50%, rgba(16, 185, 129, 0.08) 80%);
-    }
-    91.66% {
-        background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.20), rgba(16, 185, 129, 0.02) 50%, rgba(16, 185, 129, 0.05) 80%);
+        transform: translate(-30%, 30%);
     }
     100% {
-        background: radial-gradient(circle at 0% 100%, rgba(16, 185, 129, 0.30), rgba(16, 185, 129, 0.03) 50%, rgba(16, 185, 129, 0.08) 80%);
+        transform: translate(-30%, -30%);
     }
+}
+
+.hero-content {
+    max-width: 900px;
+    text-align: center;
+    padding: 0 20px;
+    margin-top: 180px;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 2;
 }
 
         .hero-content {
