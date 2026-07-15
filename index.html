@@ -172,7 +172,7 @@
             padding: 0 50px;
         }
 
-        /* ----- Hero с двумя синхронными градиентами ----- */
+        /* ----- Hero с двумя градиентами (по очереди) ----- */
 .hero {
     display: flex;
     justify-content: center;
@@ -189,13 +189,13 @@
     left: -100%;
     width: 300%;
     height: 300%;
-    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.25), rgba(16, 185, 129, 0.10) 40%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.10) 40%, transparent 70%);
     animation: float-gradient-1 8s ease-in-out infinite;
     pointer-events: none;
     will-change: transform;
 }
 
-/* Второй градиент (из нижнего левого угла) */
+/* Второй градиент (из нижнего левого угла) - с задержкой 4 секунды */
 .hero::after {
     content: '';
     position: absolute;
@@ -203,8 +203,8 @@
     right: -100%;
     width: 300%;
     height: 300%;
-    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.25), rgba(16, 185, 129, 0.10) 40%, transparent 70%);
-    animation: float-gradient-2 8s ease-in-out infinite;
+    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.10) 40%, transparent 70%);
+    animation: float-gradient-2 8s ease-in-out infinite 1s; /* ← ЗАДЕРЖКА 4 СЕКУНДЫ */
     pointer-events: none;
     will-change: transform;
 }
