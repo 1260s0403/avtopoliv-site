@@ -329,35 +329,38 @@
         }
 
         /* ----- Анимация выезжания текстового блока ----- */
-        /* Слайд 2 (первый с картинкой) */
-        .fullscreen-slide:nth-child(2) .slide-text-zone {
-            transform: translateX(100%);
-        }
+/* Слайд 2 (первый с картинкой) */
+.fullscreen-slide:nth-child(2) .slide-text-zone {
+    transform: translateX(100%);
+    opacity: 0;
+}
 
-        .fullscreen-slide:nth-child(2).animated .slide-text-zone {
-            transform: translateX(0);
-            opacity: 1;
-        }
+.fullscreen-slide:nth-child(2).animated .slide-text-zone {
+    transform: translateX(0);
+    opacity: 1;
+}
 
-        /* Слайд 3 (второй с картинкой) */
-        .fullscreen-slide:nth-child(3) .slide-text-zone {
-            transform: translateX(-100%);
-        }
+/* Слайд 3 (второй с картинкой) */
+.fullscreen-slide:nth-child(3) .slide-text-zone {
+    transform: translateX(-100%);
+    opacity: 0;
+}
 
-        .fullscreen-slide:nth-child(3).animated .slide-text-zone {
-            transform: translateX(0);
-            opacity: 1;
-        }
+.fullscreen-slide:nth-child(3).animated .slide-text-zone {
+    transform: translateX(0);
+    opacity: 1;
+}
 
-        /* Слайд 4 (третий с картинкой) */
-        .fullscreen-slide:nth-child(4) .slide-text-zone {
-            transform: translateX(100%);
-        }
+/* Слайд 4 (третий с картинкой) */
+.fullscreen-slide:nth-child(4) .slide-text-zone {
+    transform: translateX(100%);
+    opacity: 0;
+}
 
-        .fullscreen-slide:nth-child(4).animated .slide-text-zone {
-            transform: translateX(0);
-            opacity: 1;
-        }
+.fullscreen-slide:nth-child(4).animated .slide-text-zone {
+    transform: translateX(0);
+    opacity: 1;
+}
 
         /* ----- Typewriter Styles ----- */
         .slide-text-zone .typing-title {
