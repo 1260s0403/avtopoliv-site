@@ -41,12 +41,14 @@
         /* ----- Header ----- */
         header {
             background: transparent;
+            backdrop-filter: blur(0px);
+            border-bottom: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 100;
-            padding: 70px 20px 20px 20px;
+            padding: 50px 20px 20px 20px;
             transition: padding 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -92,6 +94,7 @@
             width: auto;
             object-fit: contain;
             transition: height 0.3s ease;
+            background: transparent;
         }
 
         header.compact .logo-img {
@@ -153,16 +156,16 @@
 
         /* ----- Слайды ----- */
         .fullscreen-slide {
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    position: relative;
-    background: var(--bg-dark);
-    overflow: hidden;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-    padding: 0 50px;
-}
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: var(--bg-dark);
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            padding: 0 50px;
+        }
 
         .hero {
             display: flex;
@@ -285,13 +288,21 @@
             justify-content: center;
             background: #0f172a;
             z-index: 10;
+            opacity: 0;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
         }
 
         .slide-text-zone h2,
         .slide-text-zone p {
-            opacity: 0.3;
-            transform: translateY(10px);
-            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease 0.4s;
+        }
+
+        .fullscreen-slide.animated .slide-text-zone h2,
+        .fullscreen-slide.animated .slide-text-zone p {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .fullscreen-slide:nth-child(even) .split-layout {
@@ -317,16 +328,35 @@
             margin-top: 15px;
         }
 
-        .split-layout:hover .slide-text-zone h2 {
-            opacity: 1;
-            transform: translateY(0);
-            transition-delay: 0.1s;
+        /* ----- Анимация выезжания текстового блока ----- */
+        /* Слайд 2 (первый с картинкой) */
+        .fullscreen-slide:nth-child(2) .slide-text-zone {
+            transform: translateX(100%);
         }
 
-        .split-layout:hover .slide-text-zone p {
+        .fullscreen-slide:nth-child(2).animated .slide-text-zone {
+            transform: translateX(0);
             opacity: 1;
-            transform: translateY(0);
-            transition-delay: 0.2s;
+        }
+
+        /* Слайд 3 (второй с картинкой) */
+        .fullscreen-slide:nth-child(3) .slide-text-zone {
+            transform: translateX(-100%);
+        }
+
+        .fullscreen-slide:nth-child(3).animated .slide-text-zone {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        /* Слайд 4 (третий с картинкой) */
+        .fullscreen-slide:nth-child(4) .slide-text-zone {
+            transform: translateX(100%);
+        }
+
+        .fullscreen-slide:nth-child(4).animated .slide-text-zone {
+            transform: translateX(0);
+            opacity: 1;
         }
 
         /* ----- Typewriter Styles ----- */
@@ -368,14 +398,14 @@
 
         /* ----- Наши работы ----- */
         .portfolio-section {
-    min-height: 100vh;
-    width: 100%;
-    padding: 140px 70px 80px;
-    background: var(--bg-dark);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+            min-height: 100vh;
+            width: 100%;
+            padding: 140px 70px 80px;
+            background: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
         .portfolio-section .section-title {
             font-size: 42px;
@@ -700,6 +730,10 @@
                 margin-bottom: 30px;
             }
 
+            .fullscreen-slide {
+                padding: 0 15px;
+            }
+
             .split-layout {
                 flex-direction: column !important;
                 height: auto;
@@ -727,6 +761,22 @@
                 padding: 30px 20px;
                 height: auto;
                 min-height: 40vh;
+                transform: none !important;
+                opacity: 1 !important;
+            }
+
+            /* Отключаем анимацию выезжания текста на мобильных */
+            .fullscreen-slide:nth-child(2) .slide-text-zone,
+            .fullscreen-slide:nth-child(3) .slide-text-zone,
+            .fullscreen-slide:nth-child(4) .slide-text-zone {
+                transform: none !important;
+                opacity: 1 !important;
+            }
+
+            .slide-text-zone h2,
+            .slide-text-zone p {
+                opacity: 1;
+                transform: translateY(0);
             }
 
             .slide-text-zone h2 {
@@ -894,7 +944,7 @@
     <!-- Слайд 1: Герой -->
     <section class="fullscreen-slide hero" id="hero">
         <div class="hero-content">
-            <h1>Системы <span>автоматического полива</span></h1>
+            <h1>Инженерные системы <span>автоматического полива</span></h1>
             <p>Индивидуальное проектирование с гидравлическими расчетами. Полный цикл от монтажа до запуска и сезонного обслуживания систем. Работаем строго по договору, фиксируем стоимость до начала работ и сдаем объекты точно в срок.</p>
             <a href="#order" class="btn">Записаться на бесплатный выезд инженера</a>
         </div>
@@ -904,7 +954,7 @@
     <section class="fullscreen-slide anim-slide-left" id="slide1">
         <div class="split-layout">
             <div class="slide-image-zone">
-                <img src="polyv.jpg" alt="Автополив газона" loading="lazy" width="1650" height="1070">
+                <img src="polyv.jpg" alt="Ювелирный монтаж автополива Лейка" loading="lazy" width="1650" height="1070">
             </div>
             <div class="slide-text-zone">
                 <h2 class="typing-title">
@@ -1009,7 +1059,7 @@
             window.addEventListener('scroll', handleScroll, { passive: true });
             handleScroll();
 
-            // --- 2. АНИМАЦИЯ ВЫЕЗЖАНИЯ КАРТИНОК ---
+            // --- 2. АНИМАЦИЯ ВЫЕЗЖАНИЯ КАРТИНОК И ТЕКСТОВОГО БЛОКА ---
             function animateSlideOnEnter(slideElement) {
                 if (!slideElement) return;
                 if (slideElement.classList.contains('animated')) return;
@@ -1092,6 +1142,7 @@
                     if (isTypingStarted) return;
                     isTypingStarted = true;
                     titleElement.classList.add('show');
+
                     typeWriter(textElement, textForTyping, speed).then(() => {
                         if (subtitleText && subtitleElement) {
                             subtitleElement.classList.add('show');
