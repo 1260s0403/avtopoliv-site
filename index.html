@@ -172,31 +172,34 @@
             padding: 0 50px;
         }
 
-        /* ----- Hero с бегающим градиентом ----- */
-        .hero {
-            display: flex;
-            justify-content: center;
-            background: radial-gradient(circle at 0% 100%, var(--primary-glow), transparent 50%);
-            animation: moving-gradient 6s ease-in-out infinite alternate;
-        }
+        /* ----- Hero с плавающим градиентом ----- */
+.hero {
+    display: flex;
+    justify-content: center;
+    background: radial-gradient(circle at 0% 100%, rgba(16, 185, 129, 0.25), transparent 50%);
+    animation: floating-gradient 3s ease-in-out infinite alternate;
+}
 
-        @keyframes moving-gradient {
-            0% {
-                background: radial-gradient(circle at 0% 100%, rgba(16, 185, 129, 0.15), transparent 50%);
-            }
-            25% {
-                background: radial-gradient(circle at 30% 70%, rgba(16, 185, 129, 0.12), transparent 50%);
-            }
-            50% {
-                background: radial-gradient(circle at 70% 30%, rgba(16, 185, 129, 0.10), transparent 50%);
-            }
-            75% {
-                background: radial-gradient(circle at 90% 20%, rgba(16, 185, 129, 0.12), transparent 50%);
-            }
-            100% {
-                background: radial-gradient(circle at 100% 0%, rgba(16, 185, 129, 0.15), transparent 50%);
-            }
-        }
+@keyframes floating-gradient {
+    0% {
+        background: radial-gradient(circle at 0% 100%, rgba(16, 185, 129, 0.30), transparent 50%);
+    }
+    20% {
+        background: radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.25), transparent 50%);
+    }
+    40% {
+        background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.20), transparent 50%);
+    }
+    60% {
+        background: radial-gradient(circle at 80% 30%, rgba(16, 185, 129, 0.25), transparent 50%);
+    }
+    80% {
+        background: radial-gradient(circle at 90% 20%, rgba(16, 185, 129, 0.28), transparent 50%);
+    }
+    100% {
+        background: radial-gradient(circle at 100% 0%, rgba(16, 185, 129, 0.30), transparent 50%);
+    }
+}
 
         .hero-content {
             max-width: 900px;
