@@ -172,7 +172,7 @@
             padding: 0 50px;
         }
 
-        /* ----- Hero с непрерывным движением и пониженной яркостью ----- */
+        /* ----- Hero с двумя синхронными градиентами ----- */
 .hero {
     display: flex;
     justify-content: center;
@@ -189,7 +189,7 @@
     left: -100%;
     width: 300%;
     height: 300%;
-    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.30), rgba(16, 185, 129, 0.08) 40%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.10) 40%, transparent 70%);
     animation: float-gradient-1 8s ease-in-out infinite;
     pointer-events: none;
     will-change: transform;
@@ -203,28 +203,39 @@
     right: -100%;
     width: 300%;
     height: 300%;
-    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.30), rgba(16, 185, 129, 0.08) 40%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.10) 40%, transparent 70%);
     animation: float-gradient-2 8s ease-in-out infinite;
     pointer-events: none;
     will-change: transform;
 }
 
-/* Непрерывное движение (без паузы) */
 @keyframes float-gradient-1 {
     0% {
         transform: translate(0%, 0%);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(66%, -66%);
+        opacity: 1;
     }
     100% {
-        transform: translate(66%, -66%);
+        transform: translate(0%, 0%);
+        opacity: 1;
     }
 }
 
 @keyframes float-gradient-2 {
     0% {
         transform: translate(0%, 0%);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-66%, 66%);
+        opacity: 1;
     }
     100% {
-        transform: translate(-66%, 66%);
+        transform: translate(0%, 0%);
+        opacity: 1;
     }
 }
 
